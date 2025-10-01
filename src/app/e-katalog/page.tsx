@@ -4,13 +4,22 @@ import { useEffect, useState } from 'react'
 import { fetchSanity } from '../lib/sanity'
 import { GET_KATALOGLAR } from '../lib/queries'
 
+interface Katalog {
+  _id: string
+  pdfFile?: {
+    asset?: {
+      url: string
+    }
+  }
+}
+
 export default function EKatalogPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function loadAndRedirect() {
       try {
-        const kataloglar = await fetchSanity(GET_KATALOGLAR)
+        const kataloglar = await fetchSanity<Katalog[]>(GET_KATALOGLAR)
         
         if (kataloglar && kataloglar.length > 0 && kataloglar[0].pdfFile?.asset?.url) {
           // Sanity'den gelen PDF URL'sine yönlendir

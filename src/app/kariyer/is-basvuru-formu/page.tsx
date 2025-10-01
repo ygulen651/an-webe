@@ -4,7 +4,31 @@ import { useState } from 'react'
 import Header from '../../components/Header'
 
 export default function IsBasvuruFormu() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    adSoyad: string
+    email: string
+    telefon: string
+    evNo: string
+    dogumYeri: string
+    dogumTarihi: string
+    cinsiyet: string
+    medeniHali: string
+    kanGrubu: string
+    ehliyet: string
+    askerlik: string
+    egitimDurumu: string
+    bolum: string
+    yabanciDil: string
+    dilSeviye: string
+    yabanciDil2: string
+    dilSeviye2: string
+    oncekiPozisyon: string
+    basvuruPozisyonu: string
+    ayrilmaNedeni: string
+    referanslar: string
+    ekBilgiler: string
+    cvDosya: File | null | undefined
+  }>({
     // Kişisel Bilgiler
     adSoyad: '',
     email: '',

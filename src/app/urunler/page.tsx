@@ -2,6 +2,7 @@ import { client } from '../lib/sanity'
 import { GET_PRODUCTS } from '../lib/queries'
 import Header from '../components/Header'
 import ProductGridWrapper from './components/ProductGridWrapper'
+import { Suspense } from 'react'
 
 const categories = [
   { name: 'Tümü', slug: 'all' },
@@ -181,7 +182,13 @@ export default async function UrunlerPage() {
       </div>
 
       {/* Product Grid with Filter */}
-      <ProductGridWrapper products={products} />
+      <Suspense fallback={
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-red-600"></div>
+        </div>
+      }>
+        <ProductGridWrapper products={products} />
+      </Suspense>
     </div>
   )
 }

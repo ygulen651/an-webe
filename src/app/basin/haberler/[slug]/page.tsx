@@ -17,16 +17,17 @@ const categoryMapping: { [key: string]: string } = {
 }
 
 interface NewsDetailProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export default async function NewsDetailPage({ params }: NewsDetailProps) {
+  const { slug } = await params
   let news = null
   
   try {
-    const sanityNews = await sanityClient.fetch(GET_SINGLE_NEWS, { slug: params.slug })
+    const sanityNews = await sanityClient.fetch(GET_SINGLE_NEWS, { slug })
     if (!sanityNews) {
       notFound()
     }
