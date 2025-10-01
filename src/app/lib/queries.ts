@@ -113,14 +113,16 @@ export const qKurumsalKimlik = `*[_type == "kurumsalKimlik"][0]{
 }`;
 
 // Ürünler için sorgular
-export const GET_PRODUCTS = `*[_type == "urun"]{
-  _id, title, slug, description, 
-  image{asset->{url}}, 
-  kategori->{title, slug}
-}`;
+export const GET_PRODUCTS = `*[_type == "urun" && isActive == true]{
+  _id, title, slug, description, fiyat, cesitNo, gramaj, koliAdet, hc40, tir, kutuBoyutu, barkod,
+  image{asset->{url}, alt}, 
+  kategori->{title, slug},
+  order
+}|order(order asc, title asc)`;
 
-export const GET_PRODUCTS_BY_CATEGORY = `*[_type == "urun" && kategori->slug.current == $categorySlug]{
-  _id, title, slug, description, 
-  image{asset->{url}}, 
-  kategori->{title, slug}
-}`;
+export const GET_PRODUCTS_BY_CATEGORY = `*[_type == "urun" && isActive == true && kategori->slug.current == $categorySlug]{
+  _id, title, slug, description, fiyat, cesitNo, gramaj, koliAdet, hc40, tir, kutuBoyutu, barkod,
+  image{asset->{url}, alt}, 
+  kategori->{title, slug},
+  order
+}|order(order asc, title asc)`;

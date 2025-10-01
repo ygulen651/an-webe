@@ -23,7 +23,6 @@ interface Product {
 interface Category {
   name: string
   slug: string
-  icon: string
 }
 
 interface ProductCategoryProps {
@@ -41,15 +40,12 @@ export default function ProductCategory({ category, products }: ProductCategoryP
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Category Header */}
-      <div className="bg-gradient-to-br from-blue-500 to-purple-600 p-6 text-white">
-        <div className="flex items-center space-x-3">
-          <span className="text-3xl">{category.icon}</span>
-          <div>
-            <h3 className="text-xl font-bold">{category.name}</h3>
-            <p className="text-blue-100 text-sm">
-              {products.length} ürün
-            </p>
-          </div>
+      <div className="bg-gradient-to-r from-gray-800 to-gray-900 p-6 text-white">
+        <div>
+          <h3 className="text-2xl font-light tracking-wide">{category.name}</h3>
+          <p className="text-gray-300 text-sm mt-1">
+            {products.length} ürün
+          </p>
         </div>
       </div>
 
@@ -93,8 +89,10 @@ export default function ProductCategory({ category, products }: ProductCategoryP
           </div>
         ) : (
           <div className="text-center py-8">
-            <div className="text-4xl mb-3 opacity-50">{category.icon}</div>
-            <p className="text-gray-500">
+            <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+              <div className="w-8 h-8 bg-gray-300 rounded"></div>
+            </div>
+            <p className="text-gray-500 text-sm">
               Bu kategori için henüz ürün eklenmemiş
             </p>
           </div>
@@ -104,9 +102,9 @@ export default function ProductCategory({ category, products }: ProductCategoryP
         <div className="mt-6">
           <Link 
             href={`/urunler/${category.slug}`}
-            className={`w-full block text-center py-3 px-4 rounded-lg font-medium transition-colors ${
+            className={`w-full block text-center py-3 px-4 rounded-sm font-light transition-colors ${
               products.length > 0 
-                ? 'bg-blue-600 text-white hover:bg-blue-700' 
+                ? 'bg-gray-800 text-white hover:bg-gray-900' 
                 : 'bg-gray-200 text-gray-500 cursor-not-allowed'
             }`}
           >

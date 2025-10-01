@@ -1,7 +1,28 @@
 "use client";
 import { useMemo } from "react";
+import Link from "next/link";
 
 type Item = { name: string; imageUrl?: string };
+
+// Kategori isimlerini slug'lara çevir
+function getCategorySlug(categoryName: string): string {
+  const slugMap: { [key: string]: string } = {
+    'Bisküvi': 'biskuvi',
+    'Bisküviler': 'biskuvi',
+    'Çikolata': 'cikolata',
+    'Çikolatalar': 'cikolata',
+    'Kek': 'kek',
+    'Kekler': 'kek',
+    'Gofret': 'gofret',
+    'Gofretler': 'gofret',
+    'Kraker': 'kraker',
+    'Krakerler': 'kraker',
+    'Şekerleme': 'sekerleme',
+    'Şekerlemeler': 'sekerleme'
+  };
+  
+  return slugMap[categoryName] || categoryName.toLowerCase();
+}
 
 export default function ProductCircleGridClient({ items }: { items: Item[] }) {
   const safeItems = useMemo(() => items ?? [], [items]);
@@ -27,8 +48,8 @@ export default function ProductCircleGridClient({ items }: { items: Item[] }) {
             }
             return (
             <div key={p.name} className={"product-wrap" + colClass}>
-              <a
-                href="#"
+              <Link
+                href={`/urunler?kategori=${getCategorySlug(p.name)}`}
                 className="w-[220px] h-[220px] rounded-full relative overflow-hidden text-white shadow-lg product-card"
                 onMouseMove={(e) => {
                   const target = e.currentTarget as HTMLAnchorElement;
@@ -64,7 +85,7 @@ export default function ProductCircleGridClient({ items }: { items: Item[] }) {
                 <div className="product-card-overlay">
                   <h3 className="product-card-title">{p.name}</h3>
                 </div>
-              </a>
+              </Link>
             </div>
           )})}
         </div>

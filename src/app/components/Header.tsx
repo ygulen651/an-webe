@@ -188,10 +188,10 @@ export default function Header({ overlay }: HeaderProps) {
                 {/* Üst yatay menü başlıkları */}
                 <div className="mx-auto max-w-[1200px] px-6 md:px-8 pt-6 md:pt-8">
                   <div className="flex items-center justify-center gap-6 md:gap-10 text-xs md:text-sm font-semibold tracking-tight">
+                    <Link href="/" className="hover:underline text-white">ANA SAYFA</Link>
                     <a href="#kurumsal" onClick={(e) => { e.preventDefault(); setActiveTop("kurumsal"); }} className={`hover:underline ${activeTop === "kurumsal" ? "text-white" : "text-white/85"}`}>KURUMSAL</a>
                     <Link href="/urunler" className="hover:underline text-white">ÜRÜNLER</Link>
                     <a href="#kariyer" onClick={(e) => { e.preventDefault(); setActiveTop("kariyer"); }} className={`hover:underline ${activeTop === "kariyer" ? "text-white" : "text-white/85"}`}>KARİYER</a>
-                    <Link href="/kalite" className="hover:underline text-white">KALİTE</Link>
                     <a href="#basin" onClick={(e) => { e.preventDefault(); setActiveTop("basin"); }} className={`hover:underline ${activeTop === "basin" ? "text-white" : "text-white/85"}`}>BASIN / MEDYA</a>
                     <a href="#iletisim" onClick={(e) => { e.preventDefault(); setActiveTop("iletisim"); }} className={`hover:underline ${activeTop === "iletisim" ? "text-white" : "text-white/85"}`}>İLETİŞİM</a>
                     <a href="#ekatalog" onClick={(e) => { e.preventDefault(); setActiveTop("ekatalog"); }} className={`hover:underline ${activeTop === "ekatalog" ? "text-white" : "text-white/85"}`}>E-KATALOG</a>
@@ -376,10 +376,10 @@ export default function Header({ overlay }: HeaderProps) {
                 {/* Üst yatay menü başlıkları */}
                 <div className="mx-auto max-w-[1200px] px-6 md:px-8 pt-8">
                   <div className="flex items-center justify-center gap-6 md:gap-10 text-xs md:text-sm font-semibold tracking-tight">
+                    <Link href="/" className="hover:underline text-white">ANA SAYFA</Link>
                     <a href="#kurumsal" onClick={(e) => { e.preventDefault(); setActiveTop("kurumsal"); }} className={`hover:underline ${activeTop === "kurumsal" ? "text-white" : "text-white/85"}`}>KURUMSAL</a>
                     <Link href="/urunler" className="hover:underline text-white">ÜRÜNLER</Link>
-                  <a href="#kariyer" onClick={(e) => { e.preventDefault(); setActiveTop("kariyer"); }} className={`hover:underline ${activeTop === "kariyer" ? "text-white" : "text-white/85"}`}>KARİYER</a>
-                  <Link href="/kalite" className="hover:underline text-white">KALİTE</Link>
+                    <a href="#kariyer" onClick={(e) => { e.preventDefault(); setActiveTop("kariyer"); }} className={`hover:underline ${activeTop === "kariyer" ? "text-white" : "text-white/85"}`}>KARİYER</a>
                     <a href="#basin" onClick={(e) => { e.preventDefault(); setActiveTop("basin"); }} className={`hover:underline ${activeTop === "basin" ? "text-white" : "text-white/85"}`}>BASIN / MEDYA</a>
                     <a href="#iletisim" onClick={(e) => { e.preventDefault(); setActiveTop("iletisim"); }} className={`hover:underline ${activeTop === "iletisim" ? "text-white" : "text-white/85"}`}>İLETİŞİM</a>
                     <a href="#ekatalog" onClick={(e) => { e.preventDefault(); setActiveTop("ekatalog"); }} className={`hover:underline ${activeTop === "ekatalog" ? "text-white" : "text-white/85"}`}>E-KATALOG</a>

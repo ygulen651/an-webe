@@ -13,7 +13,7 @@ export default defineType({
     }),
     defineField({
       name: 'slug',
-      title: 'Slug',
+      title: 'URL Slug',
       type: 'slug',
       options: {
         source: 'title',
@@ -40,7 +40,7 @@ export default defineType({
           name: 'alt',
           type: 'string',
           title: 'Alt Text',
-          description: 'Görsel açıklaması (SEO için önemli)',
+          description: 'Görsel için açıklayıcı metin',
           options: {
             isHighlighted: true
           }
@@ -55,71 +55,59 @@ export default defineType({
       validation: Rule => Rule.required()
     }),
     defineField({
-      name: 'ozellikler',
-      title: 'Ürün Özellikleri',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            {
-              name: 'ozellik',
-              title: 'Özellik',
-              type: 'string'
-            },
-            {
-              name: 'deger',
-              title: 'Değer',
-              type: 'string'
-            }
-          ],
-          preview: {
-            select: {
-              title: 'ozellik',
-              subtitle: 'deger'
-            }
-          }
-        }
-      ]
+      name: 'fiyat',
+      title: 'Fiyat',
+      type: 'number',
+      description: 'Ürün fiyatı (TL)'
     }),
     defineField({
-      name: 'besinDegeri',
-      title: 'Besin Değeri',
-      type: 'object',
-      fields: [
-        {
-          name: 'enerji',
-          title: 'Enerji (kcal)',
-          type: 'number'
-        },
-        {
-          name: 'protein',
-          title: 'Protein (g)',
-          type: 'number'
-        },
-        {
-          name: 'karbonhidrat',
-          title: 'Karbonhidrat (g)',
-          type: 'number'
-        },
-        {
-          name: 'yag',
-          title: 'Yağ (g)',
-          type: 'number'
-        },
-        {
-          name: 'sodyum',
-          title: 'Sodyum (mg)',
-          type: 'number'
-        }
-      ]
+      name: 'cesitNo',
+      title: 'Çeşit No',
+      type: 'string',
+      description: 'Ürün çeşit numarası'
+    }),
+    defineField({
+      name: 'gramaj',
+      title: 'Gramaj',
+      type: 'string',
+      description: 'Ürün ağırlığı (örn: 85 gr)'
+    }),
+    defineField({
+      name: 'koliAdet',
+      title: 'Koli Adet',
+      type: 'string',
+      description: 'Koli adedi (örn: 24*6)'
+    }),
+    defineField({
+      name: 'hc40',
+      title: '40HC',
+      type: 'string',
+      description: '40HC konteyner bilgisi'
+    }),
+    defineField({
+      name: 'tir',
+      title: 'Tır',
+      type: 'string',
+      description: 'Tır bilgisi'
+    }),
+    defineField({
+      name: 'kutuBoyutu',
+      title: 'Kutu Boyutu',
+      type: 'string',
+      description: 'Kutu boyutları (örn: 30x20x15 cm)'
+    }),
+    defineField({
+      name: 'barkod',
+      title: 'Barkod',
+      type: 'string',
+      description: 'Ürün barkodu'
     }),
     defineField({
       name: 'isActive',
       title: 'Aktif',
       type: 'boolean',
       initialValue: true,
-      description: 'Ürün sitede görünsün mü?'
+      description: 'Bu ürün gösterilsin mi?'
     }),
     defineField({
       name: 'order',
