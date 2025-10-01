@@ -2,6 +2,8 @@ import Header from "./components/Header";
 import ProductCircleGrid from "./components/ProductCircleGrid";
 import InspireSection from "./components/InspireSection";
 import SliderSection from "./components/SliderSection";
+import NewsSection from "./components/NewsSection";
+import Footer from "./components/Footer";
 import { sanityClient } from "./lib/sanity";
 import { qSliderItems } from "./lib/queries";
 import { SlideItem } from "./components/Slider";
@@ -19,6 +21,8 @@ export default async function Home() {
       <SliderSection slides={slides} />
       <ProductCircleGrid />
       <InspireSection />
+      <NewsSection />
+      <Footer />
     </div>
   );
 }

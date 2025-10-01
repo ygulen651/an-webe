@@ -255,34 +255,36 @@ export default function Header({ overlay }: HeaderProps) {
                   {activeTop === "kariyer" && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                       {kariyerCards.map((c) => (
-                        <a key={c.key} href={`#${c.key}`} className="flex items-start gap-3 bg-white text-[#111827] rounded-xl px-5 py-4 shadow-sm hover:shadow-md transition">
+                        <Link key={c.key} href="/kariyer/is-basvuru-formu" className="flex items-start gap-3 bg-white text-[#111827] rounded-xl px-5 py-4 shadow-sm hover:shadow-md transition">
                           <div className="font-semibold">{c.title}</div>
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   )}
                   {activeTop === "basin" && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                       {basinCards.map((c) => (
-                        <a key={c.key} href={`#${c.key}`} className="flex items-start gap-3 bg-white text-[#111827] rounded-xl px-5 py-4 shadow-sm hover:shadow-md transition">
+                        <Link key={c.key} href={c.key === 'haberler' ? '/basin/haberler' : '/basin/video-galeri'} className="flex items-start gap-3 bg-white text-[#111827] rounded-xl px-5 py-4 shadow-sm hover:shadow-md transition">
                           <div className="font-semibold">{c.title}</div>
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   )}
                   {activeTop === "ekatalog" && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                       {ekatalogCards.map((c) => (
-                        <a key={c.key} href={`#${c.key}`} className="flex items-start gap-3 bg-white text-[#111827] rounded-xl px-5 py-4 shadow-sm hover:shadow-md transition">
+                        <Link key={c.key} href="/e-katalog" className="flex items-start gap-3 bg-white text-[#111827] rounded-xl px-5 py-4 shadow-sm hover:shadow-md transition">
                           <div className="font-semibold">{c.title}</div>
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   )}
                   {activeTop === "iletisim" && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                       {iletisimCards.map((c) => (
-                        <a key={c.key} href={`#${c.key}`} className="flex items-start gap-3 bg-white text-[#111827] rounded-xl px-5 py-4 shadow-sm hover:shadow-md transition"><div className="font-semibold">{c.title}</div></a>
+                        <Link key={c.key} href="/iletisim" className="flex items-start gap-3 bg-white text-[#111827] rounded-xl px-5 py-4 shadow-sm hover:shadow-md transition">
+                          <div className="font-semibold">{c.title}</div>
+                        </Link>
                       ))}
                     </div>
                   )}
@@ -445,14 +447,14 @@ export default function Header({ overlay }: HeaderProps) {
                   {activeTop === "kariyer" && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                       {kariyerCards.map((c) => (
-                        <a key={c.key} href={`#${c.key}`} className="flex items-start gap-3 bg-white text-[#111827] rounded-xl px-5 py-4 shadow-sm hover:shadow-md transition"><div className="font-semibold">{c.title}</div></a>
+                        <Link key={c.key} href="/kariyer/is-basvuru-formu" className="flex items-start gap-3 bg-white text-[#111827] rounded-xl px-5 py-4 shadow-sm hover:shadow-md transition"><div className="font-semibold">{c.title}</div></Link>
                       ))}
                     </div>
                   )}
                   {activeTop === "basin" && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                       {basinCards.map((c) => (
-                        <a key={c.key} href={`#${c.key}`} className="flex items-start gap-3 bg-white text-[#111827] rounded-xl px-5 py-4 shadow-sm hover:shadow-md transition"><div className="font-semibold">{c.title}</div></a>
+                        <Link key={c.key} href={c.key === 'haberler' ? '/basin/haberler' : '/basin/video-galeri'} className="flex items-start gap-3 bg-white text-[#111827] rounded-xl px-5 py-4 shadow-sm hover:shadow-md transition"><div className="font-semibold">{c.title}</div></Link>
                       ))}
                     </div>
                   )}

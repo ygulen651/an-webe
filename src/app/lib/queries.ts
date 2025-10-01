@@ -126,3 +126,56 @@ export const GET_PRODUCTS_BY_CATEGORY = `*[_type == "urun" && isActive == true &
   kategori->{title, slug},
   order
 }|order(order asc, title asc)`;
+
+// Haber sorguları
+export const GET_NEWS = `*[_type == "haber" && isPublished == true]{
+  _id, title, slug, summary, category, publishedAt, readTime, featured, order,
+  image{asset->{url}, alt},
+  content
+}|order(publishedAt desc, order asc)`;
+
+export const GET_NEWS_BY_CATEGORY = `*[_type == "haber" && isPublished == true && category == $category]{
+  _id, title, slug, summary, category, publishedAt, readTime, featured, order,
+  image{asset->{url}, alt},
+  content
+}|order(publishedAt desc, order asc)`;
+
+export const GET_FEATURED_NEWS = `*[_type == "haber" && isPublished == true && featured == true]{
+  _id, title, slug, summary, category, publishedAt, readTime, featured, order,
+  image{asset->{url}, alt},
+  content
+}|order(publishedAt desc, order asc)[0...3]`;
+
+export const GET_SINGLE_NEWS = `*[_type == "haber" && slug.current == $slug && isPublished == true][0]{
+  _id, title, slug, summary, category, publishedAt, readTime, featured, order,
+  image{asset->{url}, alt},
+  content
+}`;
+
+// Video sorguları
+export const GET_VIDEOS = `*[_type == "video" && isPublished == true]{
+  _id, title, slug, description, youtubeUrl, duration, category, publishedAt, featured, order,
+  thumbnail{asset->{url}, alt}
+}|order(publishedAt desc, order asc)`;
+
+export const GET_VIDEOS_BY_CATEGORY = `*[_type == "video" && isPublished == true && category == $category]{
+  _id, title, slug, description, youtubeUrl, duration, category, publishedAt, featured, order,
+  thumbnail{asset->{url}, alt}
+}|order(publishedAt desc, order asc)`;
+
+export const GET_FEATURED_VIDEOS = `*[_type == "video" && isPublished == true && featured == true]{
+  _id, title, slug, description, youtubeUrl, duration, category, publishedAt, featured, order,
+  thumbnail{asset->{url}, alt}
+}|order(publishedAt desc, order asc)[0...3]`;
+
+export const GET_SINGLE_VIDEO = `*[_type == "video" && slug.current == $slug && isPublished == true][0]{
+  _id, title, slug, description, youtubeUrl, duration, category, publishedAt, featured, order,
+  thumbnail{asset->{url}, alt}
+}`;
+
+// Katalog sorguları
+export const GET_KATALOGLAR = `*[_type == "katalog" && isActive == true]{
+  _id, title, description, year, fileSize, pages, order, publishedAt,
+  thumbnail{asset->{url}, alt},
+  pdfFile{asset->{url, originalFilename, size}}
+}|order(order asc, publishedAt desc)`;
