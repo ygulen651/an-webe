@@ -189,7 +189,7 @@ export default function Header({ overlay }: HeaderProps) {
                 <div className="mx-auto max-w-[1200px] px-6 md:px-8 pt-6 md:pt-8">
                   <div className="flex items-center justify-center gap-6 md:gap-10 text-xs md:text-sm font-semibold tracking-tight">
                     <a href="#kurumsal" onClick={(e) => { e.preventDefault(); setActiveTop("kurumsal"); }} className={`hover:underline ${activeTop === "kurumsal" ? "text-white" : "text-white/85"}`}>KURUMSAL</a>
-                    <a href="#urunler" onClick={(e) => { e.preventDefault(); setActiveTop("urunler"); }} className={`hover:underline ${activeTop === "urunler" ? "text-white" : "text-white/85"}`}>ÜRÜNLER</a>
+                    <Link href="/urunler" className="hover:underline text-white">ÜRÜNLER</Link>
                     <a href="#kariyer" onClick={(e) => { e.preventDefault(); setActiveTop("kariyer"); }} className={`hover:underline ${activeTop === "kariyer" ? "text-white" : "text-white/85"}`}>KARİYER</a>
                     <Link href="/kalite" className="hover:underline text-white">KALİTE</Link>
                     <a href="#basin" onClick={(e) => { e.preventDefault(); setActiveTop("basin"); }} className={`hover:underline ${activeTop === "basin" ? "text-white" : "text-white/85"}`}>BASIN / MEDYA</a>
@@ -246,9 +246,9 @@ export default function Header({ overlay }: HeaderProps) {
                   {activeTop === "urunler" && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                       {urunlerCards.map((c) => (
-                        <a key={c.key} href={`#${c.key}`} className="flex items-start gap-3 bg-white text-[#111827] rounded-xl px-5 py-4 shadow-sm hover:shadow-md transition">
+                        <Link key={c.key} href={`/urunler#${c.key}`} className="flex items-start gap-3 bg-white text-[#111827] rounded-xl px-5 py-4 shadow-sm hover:shadow-md transition">
                           <div className="font-semibold">{c.title}</div>
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   )}
@@ -377,7 +377,7 @@ export default function Header({ overlay }: HeaderProps) {
                 <div className="mx-auto max-w-[1200px] px-6 md:px-8 pt-8">
                   <div className="flex items-center justify-center gap-6 md:gap-10 text-xs md:text-sm font-semibold tracking-tight">
                     <a href="#kurumsal" onClick={(e) => { e.preventDefault(); setActiveTop("kurumsal"); }} className={`hover:underline ${activeTop === "kurumsal" ? "text-white" : "text-white/85"}`}>KURUMSAL</a>
-                    <a href="#urunler" onClick={(e) => { e.preventDefault(); setActiveTop("urunler"); }} className={`hover:underline ${activeTop === "urunler" ? "text-white" : "text-white/85"}`}>ÜRÜNLER</a>
+                    <Link href="/urunler" className="hover:underline text-white">ÜRÜNLER</Link>
                   <a href="#kariyer" onClick={(e) => { e.preventDefault(); setActiveTop("kariyer"); }} className={`hover:underline ${activeTop === "kariyer" ? "text-white" : "text-white/85"}`}>KARİYER</a>
                   <Link href="/kalite" className="hover:underline text-white">KALİTE</Link>
                     <a href="#basin" onClick={(e) => { e.preventDefault(); setActiveTop("basin"); }} className={`hover:underline ${activeTop === "basin" ? "text-white" : "text-white/85"}`}>BASIN / MEDYA</a>
@@ -438,7 +438,7 @@ export default function Header({ overlay }: HeaderProps) {
                   {activeTop === "urunler" && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                       {urunlerCards.map((c) => (
-                        <a key={c.key} href={`#${c.key}`} className="flex items-start gap-3 bg-white text-[#111827] rounded-xl px-5 py-4 shadow-sm hover:shadow-md transition"><div className="font-semibold">{c.title}</div></a>
+                        <Link key={c.key} href={`/urunler#${c.key}`} className="flex items-start gap-3 bg-white text-[#111827] rounded-xl px-5 py-4 shadow-sm hover:shadow-md transition"><div className="font-semibold">{c.title}</div></Link>
                       ))}
                     </div>
                   )}

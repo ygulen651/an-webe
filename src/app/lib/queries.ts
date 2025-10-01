@@ -111,3 +111,16 @@ export type KurumsalKimlik = {
 export const qKurumsalKimlik = `*[_type == "kurumsalKimlik"][0]{
   title, hero{asset->{url}}, altText, downloads[]{ title, file{asset->{url, originalFilename}} }
 }`;
+
+// Ürünler için sorgular
+export const GET_PRODUCTS = `*[_type == "urun"]{
+  _id, title, slug, description, 
+  image{asset->{url}}, 
+  kategori->{title, slug}
+}`;
+
+export const GET_PRODUCTS_BY_CATEGORY = `*[_type == "urun" && kategori->slug.current == $categorySlug]{
+  _id, title, slug, description, 
+  image{asset->{url}}, 
+  kategori->{title, slug}
+}`;

@@ -9,7 +9,7 @@ if (!projectId || !dataset) {
   console.warn("[sanity] NEXT_PUBLIC_SANITY_PROJECT_ID veya NEXT_PUBLIC_SANITY_DATASET eksik.");
 }
 
-export const sanityClient = createClient({
+export const client = createClient({
   projectId,
   dataset,
   apiVersion,
@@ -17,6 +17,8 @@ export const sanityClient = createClient({
   perspective: 'published',
   token,
 });
+
+export const sanityClient = client;
 
 export async function fetchSanity<T>(query: string, params?: Record<string, any>): Promise<T> {
   if (!projectId || !dataset) {
