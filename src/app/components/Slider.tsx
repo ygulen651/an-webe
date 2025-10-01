@@ -59,21 +59,22 @@ export default function Slider({ slides, height = 420, onInit }: SliderProps) {
         pagination={false}
         autoplay={{ delay: 3000, pauseOnMouseEnter: true, disableOnInteraction: false }}
         loop
-        spaceBetween={16}
+        spaceBetween={8}
         slidesPerView={1}
         aria-label="Tanıtım slaytları"
         style={{ width: "100%", height }}
         onSwiper={(swiper) => { setInstance(swiper); onInit?.(swiper); }}
+        className="rounded-lg sm:rounded-xl md:rounded-2xl"
      >
         {slides.map((s) => (
           <SwiperSlide key={s.id}>
             <div
+              className="w-full h-full relative overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl bg-white"
               style={{
                 width: "100%",
                 height: "100%",
                 position: "relative",
                 overflow: "hidden",
-                borderRadius: 16,
                 backgroundColor: "#ffffff",
               }}
             >

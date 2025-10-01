@@ -16,12 +16,16 @@ export default async function Home() {
     // sunucu tarafında hata olursa boş geç
   }
   return (
-    <div className="min-h-screen w-full p-0 m-0">
+    <div className="min-h-screen w-full p-0 m-0 overflow-x-hidden bg-white">
       <Header overlay />
-      <SliderSection slides={slides} />
-      <ProductCircleGrid />
-      <InspireSection />
-      <NewsSection />
+      <main className="w-full">
+        <div className="pt-2 sm:pt-3 md:pt-4 mb-8 sm:mb-12 md:mb-16">
+          <SliderSection slides={slides} />
+        </div>
+        <ProductCircleGrid />
+        <InspireSection />
+        <NewsSection />
+      </main>
       <Footer />
     </div>
   );
