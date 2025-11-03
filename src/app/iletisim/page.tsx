@@ -1,9 +1,22 @@
 import Header from '../components/Header'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function IletisimPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
       <Header overlay />
+      
+      {/* Logo - Üst Sol Köşe */}
+      <Link href="/" className="fixed top-4 left-4 sm:top-6 sm:left-6 md:top-8 md:left-8 z-50 hover:scale-110 transition-all duration-300">
+        <Image
+          src="/AniBiskuviLogo.png"
+          alt="Ani Logo"
+          width={250}
+          height={90}
+          className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain drop-shadow-2xl"
+        />
+      </Link>
       
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-red-600 to-red-700 py-20 overflow-hidden">

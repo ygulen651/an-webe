@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { createPortal } from "react-dom";
 import { fetchSanity } from "../lib/sanity";
 import { qMenuSettings, qTestAllDocs } from "../lib/queries";
@@ -67,7 +68,7 @@ export default function Header({ overlay }: HeaderProps) {
         
         // CMS bağlantısını test et
         console.log('[Header] Test sorgusu çalıştırılıyor...');
-        const testData = await fetchSanity<any[]>(qTestAllDocs);
+        const testData = await fetchSanity<unknown[]>(qTestAllDocs);
         console.log('[Header] Test sorgusu sonucu:', testData);
         
         // Menü ayarlarını çek
@@ -111,6 +112,16 @@ export default function Header({ overlay }: HeaderProps) {
         {/* Üst mavi ince şerit - overlay modunda sayfanın en üstünde kalmasın diye gizli */}
         {/* Kırmızı bar - Responsive & Modern */}
         <div className="pointer-events-auto inline-flex bg-gradient-to-br from-[#d8232a] to-[#b91c1c] text-white rounded-bl-[32px] sm:rounded-bl-[48px] md:rounded-bl-[64px] shadow-lg sm:shadow-xl pl-8 sm:pl-16 md:pl-20 lg:pl-28 pr-3 sm:pr-4 md:pr-6 lg:pr-8 py-2 sm:py-2.5 md:py-3 text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] ml-auto backdrop-blur-sm">
+          {/* Logo in top-left corner */}
+          <div className="flex items-center mr-4 sm:mr-6 md:mr-8">
+            <Image
+              src="/AniBiskuviLogo.png"
+              alt="Ani Biskuvi Logo"
+              width={120}
+              height={32}
+              className="h-6 sm:h-7 md:h-8 w-auto object-contain"
+            />
+          </div>
           {/* Sol: Sosyal ikonlar - Mobilde gizli */}
           <div className="hidden sm:flex items-center gap-2 sm:gap-3 md:gap-3.5 lg:gap-4.5 opacity-95 mr-3 sm:mr-4 md:mr-5">
             <a href="#" aria-label="Facebook" className="hover:opacity-100 opacity-90 transition-opacity">
@@ -158,28 +169,18 @@ export default function Header({ overlay }: HeaderProps) {
             <div className="absolute inset-0 bg-black/40" />
             <div className="absolute inset-0 overflow-y-auto overflow-x-hidden">
               <div className="relative w-full min-h-full bg-[#d8232a] text-white" onClick={(e) => e.stopPropagation()}>
-                {/* Küçük hareketli dekor görselleri (menü içeriğinin altında) - Mobilde gizli */}
-                <img
-                  src={menuBgUrl || "https://via.placeholder.com/200x120/d8232a/ffffff?text=Menu+Deco+1"}
-                  alt=""
-                  aria-hidden="true"
-                  className="menu-deco menu-deco-1 hidden md:block"
-                  style={typeof menuBgOpacity === 'number' ? { opacity: Math.min(1, Math.max(0, menuBgOpacity / 100)) } : { opacity: 0.8 }}
-                />
-                <img
-                  src={menuBgUrl || "https://via.placeholder.com/200x120/d8232a/ffffff?text=Menu+Deco+2"}
-                  alt=""
-                  aria-hidden="true"
-                  className="menu-deco menu-deco-2 hidden md:block"
-                  style={typeof menuBgOpacity === 'number' ? { opacity: Math.min(1, Math.max(0, menuBgOpacity / 100)) } : { opacity: 0.8 }}
-                />
-                <img
-                  src={menuBgUrl || "https://via.placeholder.com/200x120/d8232a/ffffff?text=Menu+Deco+3"}
-                  alt=""
-                  aria-hidden="true"
-                  className="menu-deco menu-deco-3 hidden md:block"
-                  style={typeof menuBgOpacity === 'number' ? { opacity: Math.min(1, Math.max(0, menuBgOpacity / 100)) } : { opacity: 0.8 }}
-                />
+                {/* Logo - Üst Sol Köşe */}
+                <Link href="/" className="absolute top-4 left-4 sm:top-6 sm:left-6 md:top-8 md:left-8 z-50">
+                  <div className="bg-white rounded-full px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 shadow-2xl hover:shadow-3xl hover:scale-110 transition-all duration-300 cursor-pointer">
+                    <Image
+                      src="/AniBiskuviLogo.png"
+                      alt="Ani Logo"
+                      width={300}
+                      height={110}
+                      className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain"
+                    />
+                  </div>
+                </Link>
                 {/* Kapat butonu - Responsive */}
                 <button
                   type="button"
@@ -289,7 +290,7 @@ export default function Header({ overlay }: HeaderProps) {
                       {markalarCards.map((m) => (
                         <a key={m.key} href={m.href} target="_blank" rel="noopener noreferrer" className="group block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition" aria-label={m.title}>
                           <div className="w-full h-40 sm:h-44 md:h-48 grid place-items-center p-4">
-                            <img src={m.img} alt={m.title} className="max-h-full max-w-full object-contain" />
+                            <Image src={m.img} alt={m.title} width={200} height={180} className="max-h-full max-w-full object-contain" />
                           </div>
                           {m.key !== "ani-makarna" && (
                             <div className="px-4 py-3 text-center text-[#111827] font-semibold group-hover:text-red-600 transition-colors">
@@ -332,9 +333,20 @@ export default function Header({ overlay }: HeaderProps) {
       {/* Kırmızı üst şerit ve kavis */}
       <div className="relative bg-[#d8232a] text-white rounded-bl-[64px] shadow-[0_12px_24px_rgba(0,0,0,0.15)]">
         <div className="mx-auto max-w-[1200px] px-4">
-          <div className="h-12 md:h-14 flex items-center justify-between text-xs md:text-sm">
+          <div className="h-12 md:h-14 flex items-center text-xs md:text-sm">
+            {/* Logo in top-left corner */}
+            <div className="flex items-center flex-shrink-0">
+              <Image
+                src="/AniBiskuviLogo.png"
+                alt="Ani Biskuvi Logo"
+                width={120}
+                height={40}
+                className="h-8 md:h-10 w-auto object-contain"
+              />
+            </div>
+
             {/* Sol: Sosyal ikonlar */}
-            <div className="flex items-center gap-3 md:gap-4 opacity-95">
+            <div className="flex items-center gap-3 md:gap-4 opacity-95 flex-1 justify-center">
               {/* Facebook */}
               <a href="#" aria-label="Facebook" className="hover:opacity-100 opacity-90">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.48 17.52 2 11.94 2 6.36 2 1.88 6.48 1.88 12.06c0 5.02 3.68 9.19 8.48 9.94v-7.03H7.9v-2.91h2.46V9.7c0-2.43 1.45-3.77 3.66-3.77 1.06 0 2.18.19 2.18.19v2.4h-1.23c-1.21 0-1.59.75-1.59 1.52v1.82h2.71l-.43 2.91h-2.28V22c4.8-.75 8.48-4.92 8.48-9.94Z"/></svg>
@@ -356,11 +368,12 @@ export default function Header({ overlay }: HeaderProps) {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.5 8h4V23h-4V8Zm7.5 0h3.8v2.05h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V23h-4v-6.6c0-1.57-.03-3.6-2.2-3.6-2.2 0-2.54 1.72-2.54 3.5V23h-3.8V8Z"/></svg>
               </a>
             </div>
+
             {/* Dikey ayırıcı */}
             <span className="hidden md:block w-px h-5 bg-white/40 mx-3" />
 
             {/* Sağ: EN, arama, menü */}
-            <div className="flex items-center gap-4 md:gap-6">
+            <div className="flex items-center gap-4 md:gap-6 flex-shrink-0">
               <a href="#" className="tracking-wide">EN</a>
               <button aria-label="Ara" className="opacity-95 hover:opacity-100">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16Zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12Zm11 17.6-5.1-5.1 1.4-1.4 5.1 5.1-1.4 1.4Z"/></svg>
@@ -380,9 +393,10 @@ export default function Header({ overlay }: HeaderProps) {
             <div className="absolute inset-0 overflow-y-auto overflow-x-hidden">
               <div className="relative w-full min-h-full bg-[#d8232a] text-white" onClick={(e) => e.stopPropagation()}>
                 {/* Arka plan PNG görseli - Mobilde gizli */}
-                <img
+                <Image
                   src={menuBgUrl || "/menu-bg.png"}
                   alt=""
+                  fill
                   aria-hidden="true"
                   className={`pointer-events-none select-none absolute inset-0 w-full h-full object-cover z-0 hidden md:block ${typeof menuBgOpacity === 'number' ? '' : 'opacity-15'}`}
                   style={typeof menuBgOpacity === 'number' ? { opacity: menuBgOpacity / 100 } : undefined}

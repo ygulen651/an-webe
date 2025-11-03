@@ -19,9 +19,9 @@ export default async function InspireSection() {
 
   return (
     <section className="relative bg-white py-8 sm:py-12 md:py-14 lg:py-20 overflow-hidden">
-      {/* Decorative red blobs (behind content but above background) - Responsive */}
-      <div className="blob blob--slow w-[250px] h-[170px] sm:w-[380px] sm:h-[260px] md:w-[520px] md:h-[350px] lg:w-[620px] lg:h-[420px] -left-16 sm:-left-24 md:-left-36 lg:-left-40 -bottom-16 sm:-bottom-24 md:-bottom-36 lg:-bottom-40 z-0 opacity-80 sm:opacity-90" />
-      <div className="blob blob--fast w-[270px] h-[190px] sm:w-[420px] sm:h-[280px] md:w-[580px] md:h-[400px] lg:w-[680px] lg:h-[480px] -right-20 sm:-right-28 md:-right-40 lg:-right-48 -top-10 sm:-top-14 md:-top-20 lg:-top-24 z-0 opacity-80 sm:opacity-90" />
+      {/* Decorative red triangles (behind content but above background) - Responsive */}
+      <div className="blob blob--slow w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] left-4 sm:left-8 md:left-12 lg:left-16 bottom-4 sm:bottom-8 md:bottom-12 lg:bottom-16 z-[5] opacity-80 sm:opacity-90" />
+      <div className="blob blob--fast w-[220px] h-[220px] sm:w-[320px] sm:h-[320px] md:w-[450px] md:h-[450px] lg:w-[550px] lg:h-[550px] right-4 sm:right-8 md:right-12 lg:right-16 top-4 sm:top-8 md:top-12 lg:top-16 z-[5] opacity-80 sm:opacity-90" />
       {/* Stüdyodan yönetilen hareketli PNG görseller */}
       {(data?.floatImages ?? []).map((f: any, i: number) => (
         <img
@@ -34,7 +34,7 @@ export default async function InspireSection() {
             top: f.top, 
             bottom: f.bottom, 
             width: f.width ?? '80px', 
-            zIndex: f.zIndex ?? 10, 
+            zIndex: 15, 
             animationDuration: (f.speed ?? 12) + 's' 
           }}
           src={f.url}
@@ -53,58 +53,58 @@ export default async function InspireSection() {
               <p className="mt-3 sm:mt-4 md:mt-5 lg:mt-6 text-gray-700 leading-relaxed text-xs sm:text-sm md:text-base max-w-full md:max-w-[300px] mx-auto md:mx-0">{description}</p>
             )}
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 lg:auto-rows-fr">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-7">
             {/* Sol üst: Video 1 */}
-            <div className="group relative h-56 sm:h-60 md:h-64 lg:h-72 xl:h-80 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl ring-1 ring-black/5 hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 lg:col-start-1 lg:row-start-1 bg-white/20">
+            <div className="group relative h-64 sm:h-72 md:h-80 lg:h-[340px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl ring-1 ring-red-500/10 hover:ring-red-500/40 hover:-translate-y-2 hover:scale-[1.02] transition-all duration-400 lg:col-start-1 lg:row-start-1 bg-gradient-to-br from-white to-red-50/30">
               {data?.videos?.[0]?.asset?.url ? (
                 <video src={data.videos[0].asset.url} className="absolute inset-0 w-full h-full object-cover" autoPlay muted loop playsInline controls />
               ) : (
-                <div className="w-full h-full grid place-items-center bg-gray-100 text-gray-500 text-xs sm:text-sm">Video 1 ekleyin</div>
+                <div className="w-full h-full grid place-items-center bg-gradient-to-br from-white to-red-50/30 text-gray-500 text-sm">Video 1 ekleyin</div>
               )}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
-              {/* play badge */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-400" />
               <div className="pointer-events-none absolute inset-0 grid place-items-center">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/90 text-red-600 grid place-items-center shadow-md">
-                  <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                <div className="w-16 h-16 rounded-full bg-white/90 text-red-600 grid place-items-center shadow-xl group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white transition-all duration-400 backdrop-blur-sm">
+                  <svg className="w-7 h-7 ml-1" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M8 5v14l11-7z"/>
                   </svg>
                 </div>
               </div>
             </div>
+            
             {/* Orta üst: Görsel 1 */}
             {imageUrls[0] ? (
-              <div className="lg:col-start-2 lg:row-start-1 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl">
-                <img className="block w-full h-auto rounded-2xl sm:rounded-3xl" style={{objectFit:"contain"}} src={imageUrls[0]} alt="mutluluk1" loading="lazy" />
+              <div className="lg:col-start-2 lg:row-start-1 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl ring-1 ring-red-500/10 hover:ring-red-500/40 hover:-translate-y-2 hover:scale-[1.02] transition-all duration-400 bg-white h-64 sm:h-72 md:h-80 lg:h-[340px] flex items-center justify-center">
+                <img className="block w-full h-full object-cover" src={imageUrls[0]} alt="mutluluk1" loading="lazy" />
               </div>
             ) : (
-              <div className="rounded-2xl sm:rounded-3xl shadow-lg sm:shadow-xl h-48 lg:h-auto bg-gray-100 ring-1 ring-black/5 grid place-items-center text-gray-500 text-xs sm:text-sm lg:col-start-2 lg:row-start-1">Görsel 1 ekleyin</div>
+              <div className="rounded-2xl sm:rounded-3xl shadow-lg h-64 sm:h-72 md:h-80 lg:h-[340px] bg-gradient-to-br from-white to-red-50/30 ring-1 ring-red-500/10 grid place-items-center text-gray-500 text-sm lg:col-start-2 lg:row-start-1">Görsel 1 ekleyin</div>
             )}
-            {/* Alt sol: Video 2 (3. kartı bir alt sıraya aldık) */}
-            <div className="group relative h-56 sm:h-60 md:h-64 lg:h-72 xl:h-80 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl ring-1 ring-black/5 hover:shadow-2xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 lg:col-start-1 lg:row-start-2 bg-white/20">
+            
+            {/* Alt sol: Video 2 */}
+            <div className="group relative h-64 sm:h-72 md:h-80 lg:h-[340px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl ring-1 ring-red-500/10 hover:ring-red-500/40 hover:-translate-y-2 hover:scale-[1.02] transition-all duration-400 lg:col-start-1 lg:row-start-2 bg-gradient-to-br from-white to-red-50/30">
               {data?.videos?.[1]?.asset?.url ? (
                 <video src={data.videos[1].asset.url} className="absolute inset-0 w-full h-full object-cover" autoPlay muted loop playsInline controls />
               ) : (
-                <div className="w-full h-full grid place-items-center bg-gray-100 text-gray-500 text-xs sm:text-sm">Video 2 ekleyin</div>
+                <div className="w-full h-full grid place-items-center bg-gradient-to-br from-white to-red-50/30 text-gray-500 text-sm">Video 2 ekleyin</div>
               )}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
-              {/* play badge */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-400" />
               <div className="pointer-events-none absolute inset-0 grid place-items-center">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/90 text-red-600 grid place-items-center shadow-md">
-                  <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                <div className="w-16 h-16 rounded-full bg-white/90 text-red-600 grid place-items-center shadow-xl group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white transition-all duration-400 backdrop-blur-sm">
+                  <svg className="w-7 h-7 ml-1" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M8 5v14l11-7z"/>
                   </svg>
                 </div>
               </div>
             </div>
+            
             {/* Alt orta: Görsel 2 */}
             {imageUrls[1] ? (
-              <div className="lg:col-start-2 lg:row-start-2 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl">
-                <img className="block w-full h-auto rounded-2xl sm:rounded-3xl" style={{objectFit:"contain"}} src={imageUrls[1]} alt="mutluluk2" loading="lazy" />
+              <div className="lg:col-start-2 lg:row-start-2 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl ring-1 ring-red-500/10 hover:ring-red-500/40 hover:-translate-y-2 hover:scale-[1.02] transition-all duration-400 bg-white h-64 sm:h-72 md:h-80 lg:h-[340px] flex items-center justify-center">
+                <img className="block w-full h-full object-cover" src={imageUrls[1]} alt="mutluluk2" loading="lazy" />
               </div>
             ) : (
-              <div className="rounded-2xl sm:rounded-3xl shadow-lg sm:shadow-xl h-48 lg:h-auto bg-gray-100 ring-1 ring-black/5 grid place-items-center text-gray-500 text-xs sm:text-sm lg:col-start-2 lg:row-start-2">Görsel 2 ekleyin</div>
+              <div className="rounded-2xl sm:rounded-3xl shadow-lg h-64 sm:h-72 md:h-80 lg:h-[340px] bg-gradient-to-br from-white to-red-50/30 ring-1 ring-red-500/10 grid place-items-center text-gray-500 text-sm lg:col-start-2 lg:row-start-2">Görsel 2 ekleyin</div>
             )}
-            {/* Alt orta ve alt sağ boşlukları grid düzeni korumak için gizli */}
           </div>
         </div>
       </div>

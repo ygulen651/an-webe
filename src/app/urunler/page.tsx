@@ -3,6 +3,8 @@ import { GET_PRODUCTS } from '../lib/queries'
 import Header from '../components/Header'
 import ProductGridWrapper from './components/ProductGridWrapper'
 import { Suspense } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 const categories = [
   { name: 'Tümü', slug: 'all' },
@@ -166,6 +168,17 @@ export default async function UrunlerPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <Header overlay />
+      
+      {/* Logo - Üst Sol Köşe */}
+      <Link href="/" className="fixed top-4 left-4 sm:top-6 sm:left-6 md:top-8 md:left-8 z-50 hover:scale-110 transition-all duration-300">
+        <Image
+          src="/AniBiskuviLogo.png"
+          alt="Ani Logo"
+          width={250}
+          height={90}
+          className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain drop-shadow-2xl"
+        />
+      </Link>
       
       {/* Header Section */}
       <div className="bg-blue-50">
