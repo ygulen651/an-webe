@@ -280,9 +280,6 @@ export default function Slider({ slides, height = 600, onInit, variant = 'cards'
                         sizes="100vw"
                         quality={95}
                       />
-                      {/* Dynamic overlay based on content */}
-                      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60"></div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
                     </div>
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-neutral-700 via-neutral-800 to-black relative overflow-hidden" style={{ minHeight: '100%' }}>
