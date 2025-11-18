@@ -50,7 +50,7 @@ export default function ProductCircleGridClient({ items }: { items: Item[] }) {
               <div key={p.name} className={"product-wrap" + colClass}>
                 <Link
                   href={`/urunler?kategori=${getCategorySlug(p.name)}`}
-                  className="w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[160px] md:h-[160px] lg:w-[180px] lg:h-[180px] rounded-2xl relative overflow-hidden text-white shadow-lg sm:shadow-xl product-card transition-all duration-300 active:scale-95"
+                  className="w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[160px] md:h-[160px] lg:w-[180px] lg:h-[180px] rounded-full relative overflow-hidden text-white shadow-lg sm:shadow-xl product-card transition-all duration-300 active:scale-95"
                   onMouseMove={(e) => {
                     // Sadece desktop'ta çalışsın
                     if (window.innerWidth < 1024) return;

@@ -40,6 +40,7 @@ export default function Slider({ slides, height = 600, onInit, variant = 'cards'
   const [loading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [containerHeight, setContainerHeight] = useState<number>(height);
 
   // Mouse movement for 3D effects
   useEffect(() => {
@@ -97,6 +98,23 @@ export default function Slider({ slides, height = 600, onInit, variant = 'cards'
     return () => clearTimeout(timer);
   }, [slides]);
 
+  // Responsive height for mobile/tablet
+  useEffect(() => {
+    const setH = () => {
+      const w = typeof window !== 'undefined' ? window.innerWidth : 1024;
+      if (w < 640) {
+        setContainerHeight(Math.min(height, 420));
+      } else if (w < 1024) {
+        setContainerHeight(Math.min(height, 520));
+      } else {
+        setContainerHeight(height);
+      }
+    };
+    setH();
+    window.addEventListener('resize', setH);
+    return () => window.removeEventListener('resize', setH);
+  }, [height]);
+
   const getSliderConfig = (): SwiperOptions => {
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     
@@ -117,8 +135,8 @@ export default function Slider({ slides, height = 600, onInit, variant = 'cards'
           effect: 'coverflow',
           grabCursor: true,
           centeredSlides: true,
-          slidesPerView: 'auto' as const,
-          spaceBetween: -50,
+          slidesPerView: 1,
+          spaceBetween: 0,
           coverflowEffect: {
             rotate: 30,
             stretch: 0,
@@ -129,14 +147,18 @@ export default function Slider({ slides, height = 600, onInit, variant = 'cards'
           modules: [EffectCoverflow, Autoplay, A11y, Parallax],
           parallax: true,
           loop: false,
+          breakpoints: {
+            640: { slidesPerView: 2, spaceBetween: -20 },
+            1024: { slidesPerView: 'auto' as const, spaceBetween: -50 },
+          },
         };
       case 'magazine':
         return {
           effect: 'coverflow',
           grabCursor: true,
           centeredSlides: true,
-          slidesPerView: 2.5,
-          spaceBetween: -30,
+          slidesPerView: 1,
+          spaceBetween: 0,
           coverflowEffect: {
             rotate: 15,
             stretch: 0,
@@ -148,8 +170,8 @@ export default function Slider({ slides, height = 600, onInit, variant = 'cards'
           parallax: true,
           loop: false,
           breakpoints: {
-            640: { slidesPerView: 3 },
-            1024: { slidesPerView: 3.5 },
+            640: { slidesPerView: 2, spaceBetween: -10 },
+            1024: { slidesPerView: 3.5, spaceBetween: -30 },
           }
         };
       default:
@@ -192,13 +214,13 @@ export default function Slider({ slides, height = 600, onInit, variant = 'cards'
     <div className="relative w-full">
       {/* Loading overlay */}
       {loading && (
-        <div className="absolute inset-0 z-20 bg-white/90 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+        <div className="absolute inset-0 z-20 bg-black/50 backdrop-blur-sm rounded-2xl flex items-center justify-center">
           <div className="text-center">
             <div className="relative">
-              <div className="w-16 h-16 border-4 border-red-200 border-t-red-600 rounded-full animate-spin mx-auto mb-4"></div>
-              <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-r-red-400 rounded-full animate-pulse mx-auto"></div>
+              <div className="w-16 h-16 border-4 border-white/20 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
+              <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-r-white/40 rounded-full animate-pulse mx-auto"></div>
             </div>
-            <p className="text-red-600 font-semibold">Büyüleyici görseller hazırlanıyor...</p>
+            <p className="text-white font-semibold">Büyüleyici görseller hazırlanıyor...</p>
           </div>
         </div>
       )}
@@ -206,16 +228,11 @@ export default function Slider({ slides, height = 600, onInit, variant = 'cards'
       <div
         className="relative overflow-hidden rounded-2xl shadow-2xl"
         style={{
-          height,
+          height: containerHeight,
           perspective: variant === 'cards' || variant === 'coverflow' ? '1000px' : 'none',
         }}
       >
-        {/* Background particles effect */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-red-300 rounded-full animate-pulse opacity-60"></div>
-          <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-red-400 rounded-full animate-bounce opacity-40 delay-1000"></div>
-          <div className="absolute top-1/2 left-3/4 w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse opacity-50 delay-500"></div>
-        </div>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none"></div>
 
         <Swiper
           {...config}
@@ -264,12 +281,12 @@ export default function Slider({ slides, height = 600, onInit, variant = 'cards'
                         quality={95}
                       />
                       {/* Dynamic overlay based on content */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-transparent to-black/60"></div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-red-900/30 via-transparent to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
                     </div>
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-red-400 via-red-500 to-red-600 relative overflow-hidden" style={{ minHeight: '100%' }}>
-                      <div className="absolute inset-0 bg-gradient-to-br from-red-300/20 to-red-700/40"></div>
+                    <div className="w-full h-full bg-gradient-to-br from-neutral-700 via-neutral-800 to-black relative overflow-hidden" style={{ minHeight: '100%' }}>
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-black/40"></div>
                     </div>
                   )}
                 </div>
@@ -293,17 +310,17 @@ export default function Slider({ slides, height = 600, onInit, variant = 'cards'
       </div>
 
       {/* Keyboard navigation buttons on slider */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3">
+      <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 sm:gap-3">
         {/* Pagination dots */}
-        <div className="flex gap-2">
+        <div className="flex gap-1 sm:gap-1.5">
           {slides.map((_, i) => (
             <button
               key={i}
               onClick={() => instance?.slideTo(i)}
-              className={`transition-all duration-300 rounded-full border-2 ${
+              className={`transition-all duration-300 rounded-full ${
                 i === activeIndex
-                  ? "w-3 h-3 bg-red-600 border-red-600 scale-110 shadow-lg"
-                  : "w-2.5 h-2.5 bg-white/40 border-white/60 hover:bg-white/80 hover:border-white hover:scale-110"
+                  ? "w-6 sm:w-8 h-1.5 bg-white shadow"
+                  : "w-3 sm:w-4 h-1 bg-white/40 hover:bg-white/70"
               }`}
               aria-label={`Slayt ${i + 1}`}
             />
@@ -311,10 +328,10 @@ export default function Slider({ slides, height = 600, onInit, variant = 'cards'
         </div>
 
         {/* Arrow buttons */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           <button
             onClick={() => instance?.slidePrev()}
-            className="group relative w-12 h-12 rounded-full bg-white/95 backdrop-blur-sm text-red-600 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 hover:bg-white border border-red-100"
+            className="group relative w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/60 backdrop-blur-sm text-white flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 hover:bg-black/80 border border-white/10"
             aria-label="Önceki"
           >
             <svg
@@ -332,7 +349,7 @@ export default function Slider({ slides, height = 600, onInit, variant = 'cards'
 
           <button
             onClick={() => instance?.slideNext()}
-            className="group relative w-12 h-12 rounded-full bg-white/95 backdrop-blur-sm text-red-600 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 hover:bg-white border border-red-100"
+            className="group relative w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/60 backdrop-blur-sm text-white flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 hover:bg-black/80 border border-white/10"
             aria-label="Sonraki"
           >
             <svg
